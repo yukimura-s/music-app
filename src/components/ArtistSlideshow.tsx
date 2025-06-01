@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Music2, TrendingUp, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Music2, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Artist {
   name: string;
@@ -9,8 +9,6 @@ interface Artist {
   imageUrl?: string;
   spotifyImageUrl?: string;
   alternativeNames?: string[]; // 検索用の代替名
-  isNew?: boolean;
-  isRecommended?: boolean;
   spotifyUrl?: string;
   imageLoaded?: boolean;
 }
@@ -46,140 +44,120 @@ export default function ArtistSlideshow({ onArtistClick }: ArtistSlideshowProps)
       name: 'Ado', 
       genre: 'J-Pop/Rock', 
       alternativeNames: ['うっせぇわ', 'Ado Japan'],
-      isRecommended: true,
       imageLoaded: false
     },
     { 
       name: 'YOASOBI', 
       genre: 'J-Pop', 
       alternativeNames: ['夜に駆ける', 'YOASOBI Japan'],
-      isRecommended: true,
       imageLoaded: false
     },
     { 
       name: 'あいみょん', 
       genre: 'J-Pop/Folk', 
       alternativeNames: ['aimyon', 'マリーゴールド'],
-      isRecommended: true,
       imageLoaded: false
     },
     { 
       name: 'ano', 
       genre: 'Alternative Pop', 
       alternativeNames: ['ano Japan', 'ちゅ、多様性'],
-      isNew: true,
       imageLoaded: false
     },
     { 
       name: 'Vaundy', 
       genre: 'Indie Rock', 
       alternativeNames: ['Vaundy Japan', 'バウンディ'],
-      isNew: true,
       imageLoaded: false
     },
     { 
       name: 'King Gnu', 
       genre: 'Alternative Rock', 
       alternativeNames: ['King Gnu Japan', 'キングヌー'],
-      isRecommended: true,
       imageLoaded: false
     },
     { 
       name: 'Mrs. GREEN APPLE', 
       genre: 'Pop Rock', 
       alternativeNames: ['ミセス', 'ミセスグリーンアップル'],
-      isRecommended: true,
       imageLoaded: false
     },
     { 
       name: 'Official髭男dism', 
       genre: 'Pop Rock', 
       alternativeNames: ['ヒゲダン', 'Official HIGE DANdism'],
-      isRecommended: true,
       imageLoaded: false
     },
     { 
       name: 'back number', 
       genre: 'J-Rock', 
       alternativeNames: ['back number Japan', 'バックナンバー'],
-      isRecommended: true,
       imageLoaded: false
     },
     { 
       name: 'フジファブリック', 
       genre: 'Alternative Rock', 
       alternativeNames: ['Fujifabric', 'フジファブリック'],
-      isNew: true,
       imageLoaded: false
     },
     { 
       name: 'BUMP OF CHICKEN', 
       genre: 'Alternative Rock', 
       alternativeNames: ['バンプ', 'BUMP'],
-      isRecommended: true,
       imageLoaded: false
     },
     { 
       name: 'ONE OK ROCK', 
       genre: 'Rock', 
       alternativeNames: ['ワンオク', 'ONE OK ROCK Japan'],
-      isRecommended: true,
       imageLoaded: false
     },
     { 
       name: 'Perfume', 
       genre: 'Electropop', 
       alternativeNames: ['パフューム', 'Perfume Japan'],
-      isRecommended: true,
       imageLoaded: false
     },
     { 
       name: 'サカナクション', 
       genre: 'Alternative Rock', 
       alternativeNames: ['Sakanaction', 'サカナクション Japan'],
-      isRecommended: true,
       imageLoaded: false
     },
     { 
       name: 'Aimer', 
       genre: 'J-Pop/Ballad', 
       alternativeNames: ['エメ', 'Aimer Japan'],
-      isNew: true,
       imageLoaded: false
     },
     { 
       name: 'LiSA', 
       genre: 'Anime Rock', 
       alternativeNames: ['リサ', 'LiSA Japan', '紅蓮華'],
-      isRecommended: true,
       imageLoaded: false
     },
     { 
       name: 'きゃりーぱみゅぱみゅ', 
       genre: 'J-Pop', 
       alternativeNames: ['Kyary Pamyu Pamyu', 'きゃりー'],
-      isRecommended: true,
       imageLoaded: false
     },
     { 
       name: 'B\'z', 
       genre: 'Hard Rock', 
       alternativeNames: ['ビーズ', 'B\'z Japan'],
-      isRecommended: true,
       imageLoaded: false
     },
     { 
       name: 'Creepy Nuts', 
       genre: 'Hip Hop', 
       alternativeNames: ['クリーピーナッツ', 'のうぜんかずら'],
-      isNew: true,
       imageLoaded: false
     },
     { 
       name: '米津玄師', 
       genre: 'J-Pop/Folk', 
       alternativeNames: ['Kenshi Yonezu', 'Lemon', 'よねづけんし'],
-      isRecommended: true,
       imageLoaded: false
     },
   ];
@@ -362,24 +340,6 @@ export default function ArtistSlideshow({ onArtistClick }: ArtistSlideshowProps)
                       onClick={() => onArtistClick(artist.name)}
                       className="group relative bg-white rounded-lg p-3 sm:p-4 shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200 cursor-pointer hover:scale-102"
                     >
-                      {/* バッジ */}
-                      {(artist.isNew || artist.isRecommended) && (
-                        <div className="absolute top-2 right-2 z-10">
-                          {artist.isNew && (
-                            <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">
-                              <Star className="w-3 h-3 mr-1" />
-                              NEW
-                            </span>
-                          )}
-                          {artist.isRecommended && !artist.isNew && (
-                            <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200">
-                              <TrendingUp className="w-3 h-3 mr-1" />
-                              HOT
-                            </span>
-                          )}
-                        </div>
-                      )}
-
                       {/* アーティスト画像 */}
                       <div className="relative mb-3">
                         {/* Spotify画像がある場合のみ画像を表示 */}
